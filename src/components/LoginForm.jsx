@@ -2,12 +2,10 @@ import { useContext } from 'react'
 import { AuthContext } from '../context/AuthContext'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
-import { Button } from 'primereact/button'
-import { InputText } from 'primereact/inputtext'
 import { useNavigate } from 'react-router-dom'
 import "../styles/LoginForm.css"
 
-// Validación del formulario
+// Esquema de validación
 const validationSchema = Yup.object({
   username: Yup.string().required("El nombre de usuario es obligatorio"),
   password: Yup.string().required("La contraseña es obligatoria")
@@ -27,8 +25,7 @@ export default function LoginForm() {
   }
 
   return (
-    <div className="login-container">
-      <h2>Iniciar sesión</h2>
+    <div className="login-wrapper">
       <Formik
         initialValues={{ username: '', password: '' }}
         validationSchema={validationSchema}
@@ -36,28 +33,40 @@ export default function LoginForm() {
       >
         {({ isSubmitting }) => (
           <Form className="login-form">
-            <div className="form-field">
-              <label>Nombre de usuario</label>
-              <Field as={InputText} id="username" name="username" />
-              <ErrorMessage name="username" component="small" className="error" />
-            </div>
+            <div className="login-title">Iniciar sesión</div>
 
-            <div className="form-field">
-              <label>Contraseña</label>
+            <div className="login-content">
+              <div className="profile-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                  <circle cx="32" cy="20" r="12" />
+                  <path d="M8 56c0-12 10-20 24-20s24 8 24 20v4H8v-4z" />
+                </svg>
+              </div>
+
+              <label htmlFor="username">Nombre de usuario</label>
               <Field
-                as={InputText}
+                id="username"
+                name="username"
+                type="text"
+                placeholder="Ingrese su nombre de usuario"
+                className="input"
+              />
+              <ErrorMessage name="username" component="small" className="error" />
+
+              <label htmlFor="password">Contraseña</label>
+              <Field
                 id="password"
                 name="password"
                 type="password"
+                placeholder="Ingrese su contraseña"
+                className="input"
               />
               <ErrorMessage name="password" component="small" className="error" />
-            </div>
 
-            <Button
-              type="submit"
-              label={isSubmitting ? "Ingresando..." : "Ingresar"}
-              disabled={isSubmitting}
-            />
+              <button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Ingresando..." : "Ingresar"}
+              </button>
+            </div>
           </Form>
         )}
       </Formik>
