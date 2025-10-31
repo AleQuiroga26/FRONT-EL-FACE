@@ -235,13 +235,12 @@
 .home-page {
   display: flex;
   justify-content: center;
-  align-items: center;  
-  height: 140vh; /* ocupa toda la altura de la ventana */
-  background-image: url("https://plus.unsplash.com/premium_photo-1701590725721-add548ecdf61?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Zm9uZG8lMjBkZWwlMjBzaXRpbyUyMHdlYnxlbnwwfHwwfHx8MA%3D%3D&fm=jpg&q=60&w=3000");
-  background-size: cover;     /* la imagen cubre todo el contenedor */
-  background-position: center; /* centrada */
-  background-repeat: no-repeat; /* que no se repita */
+  align-items: center;
+  height: 100vh;
+  background-image: url("https://www.transparenttextures.com/patterns/gray-floral.png");
+  background-color: #afafaf;
 }
+
 
 .flip-card__btn {
   margin: 20px 0 20px 0;
