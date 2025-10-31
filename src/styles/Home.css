@@ -1,58 +1,287 @@
-.home-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(to right, #a8c0ff, #8ee4af);
-    gap: 60px;
-    padding: 20px;
-}
+/* === Estilos base del Home === */
 
 .left-section {
-    max-width: 400px;
-    text-align: left;
+  max-width: 400px;
+  text-align: left;
 }
 
 .logo-img {
-    width: 150px;
-    margin-bottom: 15px;
+  width: 150px;
+  margin-bottom: 15px;
 }
 
 .logo-text {
-    font-size: 55px;
-    color: #1877f2;
-    font-weight: 700;
-    margin-bottom: 10px;
+  font-size: 55px;
+  color: #003bfd;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
 .description {
-    font-size: 20px;
-    color: #1c1e21;
+  font-size: 20px;
+  color: #1c1e21;
 }
 
+/* === Contenedor derecho con el flip === */
 .right-section {
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    width: 350px;
-    text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent; 
+  padding: 0;              
+  width: 400px;
+  height: auto;           
+  transform: translateY(-40px); 
 }
 
-.login-box {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+
+/* === Flip Card (Uiverse) === */
+/* From Uiverse.io by andrew-demchenk0 */
+.wrapper {
+  --input-focus: #003bfd;
+  --font-color: #323232;
+  --font-color-sub: #666;
+  --bg-color: #fff;
+  --bg-color-alt: #666;
+  --main-color: #323232;
 }
 
-.login-btn {
-    background-color: #1877f2 !important;
-    border: none !important;
-    font-weight: 600;
+/* switch card */
+.switch {
+  transform: translateY(-150px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  width: 50px;
+  height: 20px;
 }
 
-.register-btn {
-    background-color: #42b72a !important;
-    border: none !important;
-    font-weight: 600;
+.card-side::before {
+  position: absolute;
+  content: "Log in";
+  left: -70px;
+  top: 0;
+  width: 100px;
+  text-decoration: underline;
+  color: var(--font-color);
+  font-weight: 600;
 }
+
+.card-side::after {
+  position: absolute;
+  content: "Sign up";
+  left: 70px;
+  top: 0;
+  width: 100px;
+  text-decoration: none;
+  color: var(--font-color);
+  font-weight: 600;
+}
+
+.toggle {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 2px solid var(--main-color);
+  box-shadow: 4px 4px var(--main-color);
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--bg-color); /* corregido */
+  transition: 0.3s;
+}
+
+.slider:before {
+  box-sizing: border-box;
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  border: 2px solid var(--main-color);
+  border-radius: 5px;
+  left: -2px;
+  bottom: 2px;
+  background-color: var(--bg-color);
+  box-shadow: 0 3px 0 var(--main-color);
+  transition: 0.3s;
+}
+
+.toggle:checked + .slider {
+  background-color: var(--input-focus);
+}
+
+.toggle:checked + .slider:before {
+  transform: translateX(30px);
+}
+
+.toggle:checked ~ .card-side:before {
+  text-decoration: none;
+}
+
+.toggle:checked ~ .card-side:after {
+  text-decoration: underline;
+}
+
+/* card */
+.flip-card__inner {
+  width: 300px;
+  height: 350px;
+  position: relative;
+  background-color: transparent;
+  perspective: 1000px;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.toggle:checked ~ .flip-card__inner {
+  transform: rotateY(180deg);
+}
+
+.toggle:checked ~ .flip-card__front {
+  box-shadow: none;
+}
+
+.flip-card__front,
+.flip-card__back {
+  padding: 20px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  background: lightgrey;
+  gap: 20px;
+  border-radius: 5px;
+  border: 2px solid var(--main-color);
+  box-shadow: 4px 4px var(--main-color);
+}
+
+.flip-card__back {
+  width: 100%;
+  transform: rotateY(180deg);
+}
+
+.flip-card__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.title {
+  margin: 20px 0 20px 0;
+  font-size: 25px;
+  font-weight: 900;
+  text-align: center;
+  color: var(--main-color);
+}
+
+.flip-card__input {
+  width: 250px;
+  height: 40px;
+  border-radius: 5px;
+  border: 2px solid var(--main-color);
+  background-color: var(--bg-color);
+  box-shadow: 4px 4px var(--main-color);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--font-color);
+  padding: 5px 10px;
+  outline: none;
+}
+
+.flip-card__input::placeholder {
+  color: var(--font-color-sub);
+  opacity: 0.8;
+}
+
+.flip-card__input:focus {
+  border: 2px solid var(--input-focus);
+}
+
+.flip-card__btn:active,
+.button-confirm:active {
+  box-shadow: 0px 0px var(--main-color);
+  transform: translate(3px, 3px);
+}
+
+.flip-card__btn {
+  margin: 20px 0 20px 0;
+  width: 120px;
+  height: 40px;
+  border-radius: 5px;
+  border: 2px solid var(--main-color);
+  background-color: var(--bg-color);
+  box-shadow: 4px 4px var(--main-color);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--font-color);
+  cursor: pointer;
+}
+
+.home-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  height: 140vh; /* ocupa toda la altura de la ventana */
+  background-image: url("https://plus.unsplash.com/premium_photo-1701590725721-add548ecdf61?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Zm9uZG8lMjBkZWwlMjBzaXRpbyUyMHdlYnxlbnwwfHwwfHx8MA%3D%3D&fm=jpg&q=60&w=3000");
+  background-size: cover;     /* la imagen cubre todo el contenedor */
+  background-position: center; /* centrada */
+  background-repeat: no-repeat; /* que no se repita */
+}
+
+.flip-card__btn {
+  margin: 20px 0 20px 0;
+  width: 120px;
+  height: 40px;
+  border-radius: 5px;
+  border: 2px solid var(--main-color);
+  background-color: var(--bg-color);
+  box-shadow: 4px 4px var(--main-color);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--font-color);
+  cursor: pointer;
+
+  /* Centrado del texto */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: -10px;
+}
+
+/* === Ajustes extra === */
+.flip-card__btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: -10px;
+}
+

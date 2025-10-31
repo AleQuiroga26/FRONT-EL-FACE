@@ -1,0 +1,259 @@
+/* === Estilo general retro eBay 2000s === */
+.retro-dashboard-gray {
+  display: flex;
+  height: 100vh;
+  background: #f7f7f7;
+  font-family: "Tahoma", "Verdana", sans-serif;
+  color: #000;
+}
+
+/* Sidebar desktop */
+.retro-sidebar-gray {
+  width: 240px;
+  background: #e0e0e0;
+  border-right: 2px solid #c0c0c0;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.retro-sidebar-gray .logo {
+  font-size: 1.6rem;
+  color: #003399;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.sidebar-btn-gray {
+  justify-content: flex-start;
+  gap: 10px;
+  background: linear-gradient(to bottom, #ffffff, #dcdcdc);
+  border: 1px solid #a0a0a0;
+  color: #000;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+  transition: 0.2s ease;
+}
+
+.sidebar-btn-gray:hover {
+  background: linear-gradient(to bottom, #f2f6ff, #c9dbff);
+  border-color: #003399;
+  color: #003399;
+}
+
+/* Navbar mobile */
+.retro-topbar-gray {
+  display: none;
+  position: sticky;
+  top: 0;
+  background: #dfe8ff;
+  border-bottom: 2px solid #ccc;
+  z-index: 1000;
+  padding: 0.5rem 1rem;
+}
+
+.logo-sm {
+  color: #003399;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Feed central */
+.retro-feed-gray {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+  background: #f7f7f7;
+}
+
+.feed-card-gray {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.feed-card-gray .p-card-title {
+  color: #003399;
+  font-size: 1.1rem;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.3rem;
+}
+
+/* Formulario de posteo */
+.new-post-form-gray .p-inputtextarea {
+  background: #fafafa;
+  border: 1px solid #bbb;
+  color: #000;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  height: 60px;          /* 🔹 Más bajo */
+  resize: none;          /* 🔹 Evita que el usuario agrande el cuadro */
+  padding: 0.4rem 0.6rem;
+}
+
+.new-post-form-gray {
+  margin-top: 0.5rem;
+}
+
+.new-post-form-gray .flex {
+  align-items: center; /* 🔹 Alinea el avatar con el textarea */
+}
+
+.new-post-form-gray .p-button {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+}
+
+
+
+.new-post-form-gray .p-inputtextarea:focus {
+  border-color: #003399;
+  box-shadow: 0 0 4px #99baff;
+}
+
+.new-post-form-gray .p-button {
+  background: linear-gradient(to bottom, #ffffff, #dcdcdc);
+  border: 1px solid #aaa;
+  color: #000;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.new-post-form-gray .p-button:hover {
+  background: linear-gradient(to bottom, #e0eaff, #b0c8ff);
+  border-color: #003399;
+  color: #003399;
+}
+
+/* Publicaciones */
+.post-card-gray {
+  background: #fff;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  padding: 0.8rem;
+}
+
+.post-card-gray strong {
+  color: #003399;
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+  .retro-sidebar-gray {
+    display: none;
+  }
+
+  .retro-topbar-gray {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .retro-feed-gray {
+    padding: 1rem;
+  }
+}
+
+/* === 🔹 RESPONSIVE DASHBOARD === */
+
+/* 📱 Tablets y pantallas medianas */
+@media (max-width: 1024px) {
+  .retro-dashboard-gray {
+    flex-direction: column;
+  }
+
+  .retro-sidebar-gray {
+    display: none;
+  }
+
+  .retro-topbar-gray {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .retro-feed-gray {
+    padding: 1rem;
+    height: auto;
+  }
+
+  .feed-card-gray {
+    margin-bottom: 1.2rem;
+  }
+
+  .new-post-form-gray .p-inputtextarea {
+    height: 50px;
+    font-size: 0.85rem;
+  }
+}
+
+/* 📱 Móviles */
+@media (max-width: 768px) {
+  .retro-feed-gray {
+    padding: 0.8rem;
+  }
+
+  .feed-card-gray {
+    padding: 0.8rem;
+  }
+
+  .post-card-gray {
+    font-size: 0.9rem;
+  }
+
+  .new-post-form-gray .flex {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .new-post-form-gray .p-inputtextarea {
+    height: 45px;
+    font-size: 0.85rem;
+  }
+
+  .new-post-form-gray .p-button {
+    align-self: flex-end;
+    margin-top: 0.4rem;
+    font-size: 0.8rem;
+  }
+
+  .retro-topbar-gray .logo-sm {
+    font-size: 1rem;
+  }
+
+  .mobile-sidebar-gray {
+    width: 70%;
+  }
+
+  .retro-topbar-gray {
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* 📱 Móviles pequeños */
+@media (max-width: 480px) {
+  .retro-feed-gray {
+    padding: 0.5rem;
+  }
+
+  .feed-card-gray {
+    padding: 0.6rem;
+  }
+
+  .new-post-form-gray .p-inputtextarea {
+    height: 40px;
+    font-size: 0.8rem;
+  }
+
+  .retro-topbar-gray {
+    padding: 0.3rem 0.6rem;
+  }
+
+  .mobile-sidebar-gray {
+    width: 85%;
+  }
+}
