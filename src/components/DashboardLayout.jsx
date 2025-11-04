@@ -47,7 +47,10 @@ export default function DashboardLayout() {
     <div className="retro-dashboard-gray">
       {/* Sidebar desktop */}
       <aside className="retro-sidebar-gray">
-        <h2 className="logo">elFace</h2>
+        <div className="logo-container">
+          <img src="/logo_face1.png" alt="logo" className="logo-img" />
+          <h2 className="logo-text">elFace</h2>
+        </div>
         <div className="menu">
           {menuItems.map((item) => (
             <Button
@@ -70,7 +73,10 @@ export default function DashboardLayout() {
               className="p-button-text"
               onClick={() => setSidebarVisible(true)}
             />
-            <h3 className="logo-sm">elFace</h3>
+            <div className="logo-container-sm">
+              <img src="/logo_face1.png" alt="logo" className="logo-img-sm" />
+              <h3 className="logo-sm">elFace</h3>
+            </div>
           </div>
         }
         end={
@@ -90,7 +96,10 @@ export default function DashboardLayout() {
         onHide={() => setSidebarVisible(false)}
         className="mobile-sidebar-gray"
       >
-        <h2 className="logo">elFace</h2>
+        <div className="logo-container">
+          <img src="/logo_face1.png" alt="logo" className="logo-img" />
+          <h2 className="logo-text">elFace</h2>
+        </div>
         {menuItems.map((item) => (
           <Button
             key={item.label}

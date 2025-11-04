@@ -115,7 +115,6 @@ export default function Home() {
                         resetForm();
                         setTimeout(() => navigate("/"), 2000);
                       }
-                      // Los errores se manejan dentro de la función register
                     }}
                   >
                     {({ isSubmitting }) => (
