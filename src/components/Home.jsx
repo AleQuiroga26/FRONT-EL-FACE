@@ -61,94 +61,112 @@ export default function Home() {
                 {/* -------------------- LOGIN -------------------- */}
                 <div className="flip-card__front">
                   <div className="title">Inicia Sesión!</div>
-                  <Formik
-                    initialValues={{ username: "", password: "" }}
-                    validationSchema={loginSchema}
-                    onSubmit={async (values, { setSubmitting }) => {
-                      const success = await login(values.username, values.password);
-                      setSubmitting(false);
-                      if (success) navigate("/dashboard");
-                      // Los errores se manejan dentro de la función login
-                    }}
-                  >
-                    {({ isSubmitting }) => (
-                      <Form className="flip-card__form">
-                        <Field
-                          className="flip-card__input"
-                          name="username"
-                          type="text"
-                          placeholder="Nombre de usuario"
-                        />
-                        <ErrorMessage name="username" component="small" className="error" />
+                    <Formik
+                      initialValues={{ username: "", password: "" }}
+                      validationSchema={loginSchema}
+                      onSubmit={async (values, { setSubmitting }) => {
+                        const success = await login(values.username, values.password);
+                        setSubmitting(false);
+                        if (success) navigate("/dashboard");
+                        // Los errores se manejan dentro de la función login
+                      }}
+                    >
+                      {({ isSubmitting }) => (
+                        <Form className="flip-card__form">
+                          <Field
+                            className="flip-card__input"
+                            name="username"
+                            type="text"
+                            placeholder="Nombre de usuario"
+                          />
+                          <ErrorMessage name="username" component="small" className="error" />
 
-                        <Field
-                          className="flip-card__input"
-                          name="password"
-                          type="password"
-                          placeholder="Contraseña"
-                        />
-                        <ErrorMessage name="password" component="small" className="error" />
+                          <Field
+                            className="flip-card__input"
+                            name="password"
+                            type="password"
+                            placeholder="Contraseña"
+                          />
+                          <ErrorMessage name="password" component="small" className="error" />
 
-                        <button className="flip-card__btn" type="submit" disabled={isSubmitting}>
-                          {isSubmitting ? "Ingresando..." : "Siguiente"}
-                        </button>
-                      </Form>
-                    )}
-                  </Formik>
-                </div>
+                          <button className="flip-card__btn" type="submit" disabled={isSubmitting}>
+                            {isSubmitting ? "Ingresando..." : "Siguiente"}
+                          </button>
+                        </Form>
+                      )}
+                    </Formik>
+                  </div>
 
-                {/* -------------------- REGISTER -------------------- */}
-                <div className="flip-card__back">
-                  <div className="title">Registrate!</div>
-                  <Formik
-                    initialValues={{ username: "", email: "", password: "" }}
-                    validationSchema={registerSchema}
-                    onSubmit={async (values, { resetForm }) => {
-                      const success = await register(values.username, values.email, values.password);
-                      if (success) {
-                        toast.current.show({
-                          severity: "success",
-                          summary: "Cuenta creada",
-                          detail: "Registro exitoso",
-                          life: 3000,
-                        });
-                        resetForm();
-                        setTimeout(() => navigate("/"), 2000);
-                      }
-                    }}
-                  >
-                    {({ isSubmitting }) => (
-                      <Form className="flip-card__form">
-                        <Field
-                          className="flip-card__input"
-                          name="username"
-                          type="text"
-                          placeholder="Nombre"
-                        />
-                        <ErrorMessage name="username" component="small" className="error" />
+                  {/* -------------------- REGISTER -------------------- */}
+                  <div className="flip-card__back">
+                    <div className="title">Registrate!</div>
+                      <Formik
+                      initialValues={{ username: "", email: "", password: "", role: "user" }}
+                      validationSchema={registerSchema}
+                      onSubmit={async (values, { resetForm }) => {
+                        const success = await register(
+                          values.username,
+                          values.email,
+                          values.password,
+                          values.role // enviamos el rol seleccionado
+                        );
+                        if (success) {
+                          toast.current.show({
+                            severity: "success",
+                            summary: "Cuenta creada",
+                            detail: "Registro exitoso",
+                            life: 3000,
+                          });
+                          resetForm();
+                          const loggedIn = await login(values.username, values.password);
+                          if (loggedIn) navigate("/dashboard");
+                        }
+                      }}
+                    >
+                      {({ isSubmitting }) => (
+                        <Form className="flip-card__form">
+                          <Field
+                            className="flip-card__input"
+                            name="username"
+                            type="text"
+                            placeholder="Nombre"
+                          />
+                          <ErrorMessage name="username" component="small" className="error" />
 
-                        <Field
-                          className="flip-card__input"
-                          name="email"
-                          type="email"
-                          placeholder="Email"
-                        />
-                        <ErrorMessage name="email" component="small" className="error" />
+                          <Field
+                            className="flip-card__input"
+                            name="email"
+                            type="email"
+                            placeholder="Email"
+                          />
+                          <ErrorMessage name="email" component="small" className="error" />
 
-                        <Field
-                          className="flip-card__input"
-                          name="password"
-                          type="password"
-                          placeholder="Contraseña"
-                        />
-                        <ErrorMessage name="password" component="small" className="error" />
+                          <Field
+                            className="flip-card__input"
+                            name="password"
+                            type="password"
+                            placeholder="Contraseña"
+                          />
+                          <ErrorMessage name="password" component="small" className="error" />
 
-                        <button className="flip-card__btn" type="submit" disabled={isSubmitting}>
-                          {isSubmitting ? "Cargando..." : "Registrar"}
-                        </button>
-                      </Form>
-                    )}
-                  </Formik>
+                          {/* === NUEVO: Selector de Rol === */}
+                          <div className="role-select-container">
+                            <label htmlFor="role" className="role-label">Seleccionar rol:</label>
+                            <Field as="select" name="role" className="flip-card__input">
+                              <option value="user">user</option>
+                              <option value="moderador">moderador</option>
+                              <option value="admin">admin</option>
+                            </Field>
+                            <ErrorMessage name="role" component="small" className="error" />
+                          </div>
+
+                          <button className="flip-card__btn" type="submit" disabled={isSubmitting}>
+                            {isSubmitting ? "Cargando..." : "Registrar"}
+                          </button>
+                        </Form>
+                      )}
+                    </Formik>
+
                 </div>
               </div>
             </label>

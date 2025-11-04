@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
     }
   }, [])
 
-  // 🔹 LOGIN
+  // LOGIN
   const login = async (username, password) => {
     try {
       const response = await fetch('http://localhost:5000/login', {
@@ -61,7 +61,7 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
-  // 🔹 REGISTER
+  // REGISTER
   const register = async (username, email, password, role = 'user') => {
     try {
       const response = await fetch('http://localhost:5000/register', {
@@ -84,7 +84,7 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
-  // 🔹 LOGOUT
+  // LOGOUT
   const logout = () => {
     localStorage.removeItem('token')
     setUser(null)
