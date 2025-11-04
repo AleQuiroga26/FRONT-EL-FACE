@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
@@ -19,6 +19,17 @@ export default function DashboardLayout() {
   const [posts, setPosts] = useState([]);
   const [newPost, setNewPost] = useState("");
   const [sidebarVisible, setSidebarVisible] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // 🔹 Persistir modo oscuro
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") setIsDarkMode(true);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+  }, [isDarkMode]);
 
   const handleLogout = () => {
     logout();
@@ -35,6 +46,10 @@ export default function DashboardLayout() {
     setNewPost("");
   };
 
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
   const menuItems = [
     { label: "Inicio", icon: "pi pi-home" },
     { label: "Explorar", icon: "pi pi-compass" },
@@ -44,7 +59,7 @@ export default function DashboardLayout() {
   ];
 
   return (
-    <div className="retro-dashboard-gray">
+    <div className={`retro-dashboard-gray ${isDarkMode ? "dark-mode" : ""}`}>
       {/* Sidebar desktop */}
       <aside className="retro-sidebar-gray">
         <div className="logo-container">
@@ -61,6 +76,12 @@ export default function DashboardLayout() {
               onClick={item.command}
             />
           ))}
+          <Button
+            icon={isDarkMode ? "pi pi-sun" : "pi pi-moon"}
+            label={isDarkMode ? "Modo Día" : "Modo Noche"}
+            className="p-button-text w-full sidebar-btn-gray"
+            onClick={toggleTheme}
+          />
         </div>
       </aside>
 
@@ -80,12 +101,20 @@ export default function DashboardLayout() {
           </div>
         }
         end={
-          <Avatar
-            label={user?.username?.[0]?.toUpperCase() || "U"}
-            shape="circle"
-            size="large"
-            style={{ backgroundColor: "#ccd8ff", color: "#003399" }}
-          />
+          <div className="flex align-items-center gap-3">
+            <Button
+              icon={isDarkMode ? "pi pi-sun" : "pi pi-moon"}
+              className="p-button-text"
+              onClick={toggleTheme}
+              tooltip={isDarkMode ? "Modo día" : "Modo noche"}
+            />
+            <Avatar
+              label={user?.username?.[0]?.toUpperCase() || "U"}
+              shape="circle"
+              size="large"
+              style={{ backgroundColor: "#ccd8ff", color: "#003399" }}
+            />
+          </div>
         }
         className="retro-topbar-gray"
       />
@@ -112,6 +141,15 @@ export default function DashboardLayout() {
             }}
           />
         ))}
+        <Button
+          icon={isDarkMode ? "pi pi-sun" : "pi pi-moon"}
+          label={isDarkMode ? "Modo Día" : "Modo Noche"}
+          className="p-button-text w-full sidebar-btn-gray"
+          onClick={() => {
+            setSidebarVisible(false);
+            toggleTheme();
+          }}
+        />
       </Sidebar>
 
       {/* Feed */}
