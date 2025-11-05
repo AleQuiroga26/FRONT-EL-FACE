@@ -235,6 +235,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  width: 100vw;
   padding: 2rem;
   gap: 1.5rem;
   background-image: url("https://www.transparenttextures.com/patterns/gray-floral.png");
@@ -242,6 +243,8 @@
   background-repeat: repeat;
   background-size: auto;
   box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto; 
 }
 
 /* Sección izquierda */
@@ -280,11 +283,11 @@
   }
 
   .right-section {
-    transform: none;
+    margin-top: -40px;
   }
 
   .switch {
-    transform: none;
+    margin-top: -150px;
   }
 }
 
