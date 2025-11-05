@@ -1,0 +1,93 @@
+/* Contenedor general */
+.navbar-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Navbar base */
+.retro-topbar-gray {
+  width: 100%;
+  background-color: #dfe8ff;
+  border-bottom: 2px solid #b0b0b0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.35rem 1rem;
+  box-sizing: border-box;
+}
+
+/* Logo */
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.logo-img-sm {
+  width: 30px;
+  height: 30px;
+}
+.logo-text {
+  color: #002b80;
+  font-weight: bold;
+}
+
+/* Botones */
+.nav-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.retro-btn {
+  background-color: #cdd8ff;
+  border: 1px solid #b0b0b0;
+  border-radius: 8px;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.95rem;
+  color: #002b80;
+  transition: all 0.2s ease-in-out;
+}
+
+.retro-btn:hover {
+  background-color: #b7c6ff;
+  transform: scale(1.05);
+}
+
+/* Avatar */
+.user-avatar {
+  background-color: #ccd8ff !important;
+  color: #002b80 !important;
+  font-weight: bold;
+}
+
+/* === MODO OSCURO === */
+body.dark-mode {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+}
+
+body.dark-mode .retro-topbar-gray {
+  background-color: #2b2b2b;
+  border-bottom: 1px solid #3d3d3d;
+}
+
+body.dark-mode .retro-btn {
+  background-color: #3a3a3a;
+  border: 1px solid #555;
+  color: #e0e0e0;
+}
+
+body.dark-mode .retro-btn:hover {
+  background-color: #505050;
+}
+
+body.dark-mode .logo-text {
+  color: #e0e0ff;
+}
+
+body.dark-mode .user-avatar {
+  background-color: #3f4b70 !important;
+  color: #ffffff !important;
+}
