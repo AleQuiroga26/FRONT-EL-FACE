@@ -1,4 +1,4 @@
-/* Contenedor general */
+/* Contenedor Navbar */
 .navbar-container {
   width: 100%;
   display: flex;
@@ -21,23 +21,25 @@
 .logo-section {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
 }
+
 .logo-img-sm {
-  width: 30px;
-  height: 30px;
+  width: 90px !important;
+  height: 90px !important;
+  margin-bottom: -30px;
 }
+
 .logo-text {
   color: #002b80;
   font-weight: bold;
 }
 
-/* Botones */
+/* Botones Navbar */
 .nav-controls {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-wrap: wrap;
   gap: 0.6rem;
+  justify-content: flex-end;
 }
 
 .retro-btn {
@@ -62,7 +64,7 @@
   font-weight: bold;
 }
 
-/* === MODO OSCURO === */
+/* Dark Mode */
 body.dark-mode {
   background-color: #1e1e1e;
   color: #f0f0f0;
@@ -90,4 +92,29 @@ body.dark-mode .logo-text {
 body.dark-mode .user-avatar {
   background-color: #3f4b70 !important;
   color: #ffffff !important;
+}
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+  .retro-topbar-gray {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.5rem;
+  }
+
+  .logo-section {
+    margin-bottom: 0.5rem;
+  }
+
+  .nav-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .retro-btn {
+    flex: 1 1 48%;
+    margin: 0.2rem 0;
+    font-size: 0.85rem;
+    padding: 0.35rem 0.6rem;
+  }
 }

@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { CategoryContext } from "../context/CategoryContext";
@@ -7,23 +7,10 @@ import { Avatar } from "primereact/avatar";
 import { Menubar } from "primereact/menubar";
 import "../styles/Navbar.css";
 
-export default function Navbar({ onLogout }) {
+export default function Navbar({ onLogout, isDarkMode, toggleTheme }) {
   const { user } = useContext(AuthContext);
   const { categories } = useContext(CategoryContext);
   const navigate = useNavigate();
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark") setIsDarkMode(true);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("theme", isDarkMode ? "dark" : "light");
-    document.body.className = isDarkMode ? "dark-mode" : "";
-  }, [isDarkMode]);
-
-  const toggleTheme = () => setIsDarkMode(!isDarkMode);
 
   const menuItems = [
     { label: "Inicio", icon: "pi pi-home", command: () => navigate("/dashboard") },

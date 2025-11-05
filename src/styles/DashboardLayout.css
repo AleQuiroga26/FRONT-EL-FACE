@@ -10,7 +10,9 @@
 
 .layout-content {
   flex: 1;
-  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
 }
 
 /* Navbar */
@@ -22,19 +24,6 @@
   border-bottom: 2px solid #ccc;
   padding: 0.25rem 0.75rem;
   z-index: 1000;
-}
-
-.logo-img-sm {
-  width: 30px;
-  height: 30px;
-  object-fit: contain;
-  margin-top: 4px;
-}
-
-.logo-sm {
-  color: #003399;
-  font-weight: bold;
-  font-size: 1.2rem;
 }
 
 /* Botones Navbar */
@@ -63,6 +52,9 @@
   margin: 0 auto;
   padding: 1rem;
   background: #f7f7f7;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 /* Card crear post */
@@ -71,7 +63,6 @@
   border: 1px solid #ccc;
   border-radius: 6px;
   padding: 1rem;
-  margin-bottom: 1rem;
 }
 
 .feed-card-gray .p-card-title {
@@ -81,13 +72,12 @@
   padding-bottom: 0.3rem;
 }
 
-/* Nueva alineación del formulario de post */
+/* Formulario de post */
 .post-inputs-row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.8rem;
   flex-wrap: wrap;
-  width: 100%;
 }
 
 .post-avatar {
@@ -95,11 +85,17 @@
   color: #003399 !important;
   font-weight: bold;
   flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
 }
 
 .post-textarea {
   flex: 1;
-  min-width: 280px;
+  min-width: 250px;
   border: 1px solid #bbb;
   border-radius: 6px;
   padding: 0.6rem;
@@ -108,7 +104,7 @@
 }
 
 .post-dropdown {
-  min-width: 200px;
+  min-width: 150px;
   border-radius: 6px;
 }
 
@@ -119,7 +115,8 @@
   border-radius: 6px;
   padding: 0.6rem 1rem;
   font-weight: bold;
-  transition: all 0.2s;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
 .post-button:hover {
@@ -133,7 +130,6 @@
   border: 1px solid #bbb;
   border-radius: 6px;
   padding: 0.8rem;
-  margin-bottom: 1rem;
 }
 
 .post-card-gray strong {
@@ -143,6 +139,20 @@
 /* Comentarios */
 .comments-section {
   margin-top: 0.5rem;
+}
+
+/* Scrollpanel */
+.p-scrollpanel-content {
+  background: transparent;
+}
+
+/* Contenedor centrado vertical y horizontal */
+.create-category-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 60px);
+  padding: 1rem;
 }
 
 /* === DARK MODE === */
@@ -197,23 +207,24 @@
   color: #99baff !important;
 }
 
-.dark-mode .p-scrollpanel-content {
-  background: #181818 !important;
-}
-
-.dark-mode .p-divider-horizontal {
-  border-top: 1px solid #333 !important;
-}
-
-/* Scrollpanel */
-.p-scrollpanel-content {
-  background: transparent;
-}
-
 /* Responsive */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
+  .layout-content {
+    padding: 0.5rem;
+  }
+
   .post-inputs-row {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .post-textarea,
+  .post-dropdown,
+  .post-button {
+    width: 100%;
+  }
+
+  .post-avatar {
+    margin: 0 auto;
   }
 }

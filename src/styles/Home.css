@@ -24,10 +24,9 @@
 }
  
 .role-label {
-  color: #000;  /* texto negro */
+  color: #000;
   font-weight: 600;
 }
-
 
 /* === Contenedor derecho con el flip === */
 .right-section {
@@ -35,15 +34,13 @@
   justify-content: center;
   align-items: center;
   background: transparent; 
-  padding: 0;              
+  padding: 0;
   width: 400px;
-  height: auto;           
+  height: auto;
   transform: translateY(-40px); 
 }
 
-
-/* === Flip Card (Uiverse) === */
-/* From Uiverse.io by andrew-demchenk0 */
+/* === Flip Card === */
 .wrapper {
   --input-focus: #003bfd;
   --font-color: #323232;
@@ -83,7 +80,6 @@
   left: 70px;
   top: 0;
   width: 100px;
-  text-decoration: none;
   color: var(--font-color);
   font-weight: 600;
 }
@@ -105,12 +101,11 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--bg-color); /* corregido */
+  background-color: var(--bg-color);
   transition: 0.3s;
 }
 
 .slider:before {
-  box-sizing: border-box;
   position: absolute;
   content: "";
   height: 20px;
@@ -156,10 +151,6 @@
   transform: rotateY(180deg);
 }
 
-.toggle:checked ~ .flip-card__front {
-  box-shadow: none;
-}
-
 .flip-card__front,
 .flip-card__back {
   padding: 20px;
@@ -189,7 +180,7 @@
 }
 
 .title {
-  margin: 20px 0 20px 0;
+  margin: 20px 0;
   font-size: 25px;
   font-weight: 900;
   text-align: center;
@@ -215,18 +206,8 @@
   opacity: 0.8;
 }
 
-.flip-card__input:focus {
-  border: 2px solid var(--input-focus);
-}
-
-.flip-card__btn:active,
-.button-confirm:active {
-  box-shadow: 0px 0px var(--main-color);
-  transform: translate(3px, 3px);
-}
-
 .flip-card__btn {
-  margin: 20px 0 20px 0;
+  margin: 20px 0;
   width: 120px;
   height: 40px;
   border-radius: 5px;
@@ -237,43 +218,140 @@
   font-weight: 600;
   color: var(--font-color);
   cursor: pointer;
-
-    /* Centrado del texto */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.flip-card__btn:active {
+  box-shadow: 0px 0px var(--main-color);
+  transform: translate(3px, 3px);
+}
 
+/* === Contenedor general === */
 .home-page {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 115vh;
+  min-height: 100vh;
+  padding: 2rem;
+  gap: 1.5rem;
   background-image: url("https://www.transparenttextures.com/patterns/gray-floral.png");
   background-color: #afafaf;
+  background-repeat: repeat;
+  background-size: auto;
+  box-sizing: border-box;
 }
 
-.error {
-  color: red;
-  font-size: 14px;
-  font-weight: 600;
-  text-align: center;
-  margin-top: -10px;
+/* Sección izquierda */
+.left-section {
+  flex: 1;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
 }
 
-/* === Ajustes extra === */
-.flip-card__btn {
+/* Sección derecha */
+.right-section {
+  flex: 1;
+  max-width: 400px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.error {
-  color: red;
-  font-size: 14px;
-  font-weight: 600;
-  text-align: center;
-  margin-top: -10px;
+/* === Responsive === */
+@media (max-width: 1024px) {
+  .home-page {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2rem;
+    min-height: 100vh;
+  }
+
+  .left-section {
+    align-items: center;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .right-section {
+    transform: none;
+  }
+
+  .switch {
+    transform: none;
+  }
 }
 
+@media (max-width: 768px) {
+  .logo-text {
+    font-size: 40px !important;
+  }
+
+  .description {
+    font-size: 18px !important;
+  }
+
+  .flip-card__inner {
+    width: 260px;
+    height: 320px;
+  }
+
+  .flip-card__input {
+    width: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-page {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1.5rem 1rem;
+    gap: 1.5rem;
+  }
+
+  .left-section {
+    align-items: center;
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  .right-section {
+    transform: none !important;
+  }
+
+  .switch {
+    transform: none !important;
+    margin-top: 0;
+  }
+
+  .flip-card__inner {
+    margin-top: 0;
+    width: 230px;
+    height: 300px;
+  }
+
+  .flip-card__input {
+    width: 200px;
+  }
+
+  .logo-img {
+    width: 80px !important;
+    height: 80px !important;
+  }
+
+  .logo-text {
+    font-size: 32px !important;
+  }
+
+  .description {
+    font-size: 16px !important;
+  }
+}

@@ -13,7 +13,6 @@ export const AuthProvider = ({ children }) => {
     if (storedToken) {
       try {
         const decoded = jwtDecode(storedToken)
-        console.log("JWT decoded:", decoded)
         if (decoded.exp * 1000 > Date.now()) {
           setUser(decoded)
           setToken(storedToken)
