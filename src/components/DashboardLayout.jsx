@@ -24,19 +24,19 @@ export default function DashboardLayout() {
 
   const navigate = useNavigate();
 
-  // === Estados principales ===
+  /* Estados principales  */
   const [newTitle, setNewTitle] = useState("");
   const [newPost, setNewPost] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [newComments, setNewComments] = useState({});
 
-  // === Edición de post ===
+  /*  Edición de post  */
   const [editingPost, setEditingPost] = useState(null);
   const [editTitle, setEditTitle] = useState("");
   const [editContent, setEditContent] = useState("");
   const [editCategory, setEditCategory] = useState(null);
 
-  // === Modo oscuro ===
+  /* Modo oscuro  */
   const [darkMode, setDarkMode] = useState(() => localStorage.getItem("theme") === "dark");
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function DashboardLayout() {
     document.body.className = darkMode ? "dark-mode" : "";
   }, [darkMode]);
 
-  // === Cargar datos al inicio ===
+   /* Cargar datos al inicio */
   useEffect(() => {
     const loadData = async () => {
       await Promise.all([fetchPosts(), fetchCategories()]);
@@ -52,13 +52,12 @@ export default function DashboardLayout() {
     loadData();
   }, []);
 
-  // === Logout ===
   const handleLogout = () => {
     logout();
     navigate("/");
   };
 
-  // === Crear nuevo post ===
+  /*  Crear nuevo post  */
   const handlePost = async (e) => {
     e.preventDefault();
     if (!newTitle.trim() || !newPost.trim() || !selectedCategory) return;
@@ -70,7 +69,7 @@ export default function DashboardLayout() {
     await fetchPosts();
   };
 
-  // === Crear comentario ===
+   /* Crear comentario  */
   const handleComment = async (postId) => {
     const commentText = newComments[postId]?.trim();
     if (!commentText) return;
@@ -80,7 +79,7 @@ export default function DashboardLayout() {
     setNewComments((prev) => ({ ...prev, [postId]: "" }));
   };
 
-  // === Iniciar edición de post ===
+ /*  Iniciar edición de post  */
   const handleEditClick = (post) => {
     setEditingPost(post);
     setEditTitle(post.title);
@@ -88,7 +87,7 @@ export default function DashboardLayout() {
     setEditCategory(post.category);
   };
 
-  // === Guardar post editado ===
+ /*  Guardar post editado  */
   const handleUpdatePost = async (e) => {
     e.preventDefault();
     if (!editTitle.trim() || !editContent.trim()) return;
@@ -114,7 +113,7 @@ export default function DashboardLayout() {
       <div className="layout-content">
         <main className="retro-feed-gray">
 
-          {/* === Crear publicación === */}
+         {/* Crear publicación  */}
           <Card title="Crear publicación" className="feed-card-gray">
             <form onSubmit={handlePost} className="new-post-form-gray">
               <div className="post-inputs-row">
@@ -153,14 +152,14 @@ export default function DashboardLayout() {
                 <Button
                   label="Publicar"
                   icon="pi pi-send"
-                  type="submit"
+                  type="danger"
                   className="post-button"
                 />
               </div>
             </form>
           </Card>
 
-          {/* === Formulario de edición de publicación === */}
+        {/* Formulario de edición de publicacion */}
           {editingPost && (
             <Card title="Editar publicación" className="feed-card-gray">
               <form onSubmit={handleUpdatePost} className="new-post-form-gray">
@@ -187,7 +186,8 @@ export default function DashboardLayout() {
                   placeholder="Selecciona una categoría"
                   className="post-dropdown"
                 />
-                <div className="flex gap-2 mt-3">
+                 {/* editar comentarios  */}
+                <div className="flex gap-1 mt-6">
                   <Button
                     label="Guardar cambios"
                     icon="pi pi-check"
@@ -208,7 +208,7 @@ export default function DashboardLayout() {
 
           <Divider />
 
-          {/* === Mostrar publicaciones === */}
+          {/* Mostrar publicaciones */} 
           <ScrollPanel style={{ width: "100%", height: "70vh" }}>
             {posts.length === 0 ? (
               <p className="text-center mt-4">Aún no hay publicaciones</p>
@@ -239,27 +239,29 @@ export default function DashboardLayout() {
                         {(post.author?.id === user?.id ||
                           user?.role === "admin" ||
                           user?.role === "moderator") && (
-                          <div className="ml-auto flex gap-2">
-                            <Button
-                              icon="pi pi-pencil"
-                              className="p-button-rounded p-button-text p-button-warning"
-                              tooltip="Editar post"
-                              onClick={() => handleEditClick(post)}
-                            />
-                            <Button
-                              icon="pi pi-trash"
-                              className="p-button-rounded p-button-text p-button-danger"
-                              tooltip="Eliminar post"
-                              onClick={async () => {
-                                const confirmed = window.confirm(
-                                  "¿Seguro que deseas eliminar este post?"
-                                );
-                                if (!confirmed) return;
-                                await deletePost(post.id);
-                                await fetchPosts();
-                              }}
-                            />
-                          </div>
+                        <div className="botones-accion">
+                        <Button
+                          icon="pi pi-pencil"
+                          className="btn-editar"
+                          tooltip="Editar post"
+                          onClick={() => handleEditClick(post)}
+                        />
+                        <Button
+                          icon="pi pi-trash"
+                          className="btn-eliminar"
+                          tooltip="Eliminar post"
+                          onClick={async () => {
+                            const confirmed = window.confirm(
+                              "¿Seguro que deseas eliminar este post?"
+                            );
+                            if (!confirmed) return;
+                            await deletePost(post.id);
+                            await fetchPosts();
+                          }}
+                        />
+                      </div>
+
+
                         )}
                       </div>
                     }

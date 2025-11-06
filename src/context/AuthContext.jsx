@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
         const decoded = jwtDecode(storedToken);
         if (decoded.exp * 1000 > Date.now()) {
           setToken(storedToken);
-          // El ID puede venir como "sub" o "identity"
+           /* El ID puede venir como sub o identity*/
           const userId = decoded.sub || decoded.identity || decoded.id;
           if (userId) fetchUserProfile(userId, storedToken);
         } else {
@@ -40,13 +40,13 @@ export const AuthProvider = ({ children }) => {
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || "Error al cargar perfil");
 
-      setUser(data); // Guarda los datos completos (username, email, role...)
+      setUser(data);  /* Guarda los datos completos username, email, rol */
     } catch (error) {
       console.error("Error cargando perfil:", error);
     }
   };
 
-  // LOGIN
+   /* LOGIN */
   const login = async (username, password) => {
     try {
       const response = await fetch('http://localhost:5000/login', {
@@ -83,7 +83,7 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
-  // REGISTER
+   /* REGISTER */
   const register = async (username, email, password, role = 'user') => {
     try {
       const response = await fetch('http://localhost:5000/register', {
@@ -106,7 +106,7 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
-  // LOGOUT
+  /*  LOGOUT */
   const logout = () => {
     localStorage.removeItem('token')
     setUser(null)

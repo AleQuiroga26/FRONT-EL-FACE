@@ -8,7 +8,7 @@ export const PostProvider = ({ children }) => {
   const [posts, setPosts] = useState([])
   const { token } = useContext(AuthContext)
 
-  // === Obtener todos los posts ===
+  /*  Obtener todos los posts  */
   const fetchPosts = async () => {
     try {
       const response = await fetch('http://localhost:5000/posts')
@@ -22,7 +22,7 @@ export const PostProvider = ({ children }) => {
     }
   }
 
-  // === Crear un nuevo post ===
+ /* Crear un nuevo post */
   const createPost = async (title, content, category_id) => {
     if (!token) {
       toast.error('Debes iniciar sesión para crear un post')
@@ -54,7 +54,7 @@ export const PostProvider = ({ children }) => {
     }
   }
 
-  // === Editar post ===
+   /* Editar post  */
   const updatePost = async (id, updatedData) => {
     try {
       const response = await fetch(`http://localhost:5000/posts/${id}`, {
@@ -81,7 +81,7 @@ export const PostProvider = ({ children }) => {
     }
   }
 
-  // === Eliminar post ===
+ /* Eliminar post  */
   const deletePost = async (id) => {
     try {
       const response = await fetch(`http://localhost:5000/posts/${id}`, {

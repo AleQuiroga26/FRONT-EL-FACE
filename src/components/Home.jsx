@@ -68,7 +68,6 @@ export default function Home() {
                         const success = await login(values.username, values.password);
                         setSubmitting(false);
                         if (success) navigate("/dashboard");
-                        // Los errores se manejan dentro de la función login
                       }}
                     >
                       {({ isSubmitting }) => (
@@ -108,7 +107,7 @@ export default function Home() {
                           values.username,
                           values.email,
                           values.password,
-                          values.role // enviamos el rol seleccionado
+                          values.role 
                         );
                         if (success) {
                           toast.current.show({
@@ -149,7 +148,6 @@ export default function Home() {
                           />
                           <ErrorMessage name="password" component="small" className="error" />
 
-                          {/* === NUEVO: Selector de Rol === */}
                           <div className="role-select-container">
                             <label htmlFor="role" className="role-label">Seleccionar rol:</label>
                             <Field as="select" name="role" className="flip-card__input">

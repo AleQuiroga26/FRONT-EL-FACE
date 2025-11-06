@@ -27,7 +27,7 @@ export default function CreateCategory() {
     }
   }, [user]);
 
-  // Persistir modo oscuro
+   /* modo oscuro */
   useEffect(() => {
     localStorage.setItem("theme", darkMode ? "dark" : "light");
     document.body.className = darkMode ? "dark-mode" : "";
@@ -83,7 +83,7 @@ export default function CreateCategory() {
               />
             </div>
 
-            {/* Descripción */}
+            {/* Descripcion */}
             <div className="flex flex-column items-center w-full">
               <label className="text-sm font-bold mb-1">Descripción</label>
               <InputTextarea
@@ -97,7 +97,7 @@ export default function CreateCategory() {
               />
             </div>
 
-            {/* Botón Crear */}
+            {/* Boton Crear */}
             <Button
               label="Crear Categoría"
               type="submit"

@@ -1,4 +1,4 @@
-/* === Estilos base del Home === */
+/* Estilos base del Home  */
 
 .left-section {
   max-width: 400px;
@@ -28,7 +28,7 @@
   font-weight: 600;
 }
 
-/* === Contenedor derecho con el flip === */
+/*  Contenedor derecho con el flip */
 .right-section {
   display: flex;
   justify-content: center;
@@ -40,7 +40,7 @@
   transform: translateY(-40px); 
 }
 
-/* === Flip Card === */
+/*Flip Card */
 .wrapper {
   --input-focus: #003bfd;
   --font-color: #323232;
@@ -228,7 +228,7 @@
   transform: translate(3px, 3px);
 }
 
-/* === Contenedor general === */
+/*  Contenedor general  */
 .home-page {
   display: flex;
   flex-direction: row;
@@ -238,7 +238,7 @@
   width: 100vw;
   padding: 2rem;
   gap: 1.5rem;
-  background-image: url("https://www.transparenttextures.com/patterns/gray-floral.png");
+  background-image: url("https://www.transparenttextures.com/patterns/gray-floral.png"); /* imagen del fondo */
   background-color: #afafaf;
   background-repeat: repeat;
   background-size: auto;
@@ -247,7 +247,7 @@
   overflow-y: auto; 
 }
 
-/* Sección izquierda */
+/* Seccion izquierda */
 .left-section {
   flex: 1;
   max-width: 450px;
@@ -257,7 +257,7 @@
   text-align: left;
 }
 
-/* Sección derecha */
+/* Seccion derecha */
 .right-section {
   flex: 1;
   max-width: 400px;
@@ -266,7 +266,7 @@
   align-items: center;
 }
 
-/* === Responsive === */
+/* Responsive */
 @media (max-width: 1024px) {
   .home-page {
     flex-direction: column;

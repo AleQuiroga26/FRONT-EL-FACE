@@ -1,4 +1,4 @@
-/* === Estilo general retro eBay 2000s === */
+/* Estilo general  */
 .layout-wrapper {
   display: flex;
   flex-direction: column;
@@ -62,7 +62,7 @@
   background: #fff;
   border: 1px solid #ccc;
   border-radius: 6px;
-  padding: 1rem;
+  padding: 2rem;
 }
 
 .feed-card-gray .p-card-title {
@@ -76,7 +76,7 @@
 .post-inputs-row {
   display: flex;
   align-items: flex-start;
-  gap: 0.8rem;
+  gap: 3rem;
   flex-wrap: wrap;
 }
 
@@ -155,7 +155,7 @@
   padding: 1rem;
 }
 
-/* === DARK MODE === */
+/* Modo noche */
 .dark-mode {
   background: #121212;
   color: #f5f5f5;
@@ -206,6 +206,53 @@
 .dark-mode strong {
   color: #99baff !important;
 }
+
+/* Botones de accion rapida editar y eliminar  */
+.btn-editar {
+  background-color: #1a78e4; 
+  color: white;
+  border: none;
+  border-radius: 50%; 
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-editar:hover {
+  background-color: #1a78e4; 
+  transform: scale(1.1);
+}
+
+.btn-eliminar {
+  background-color: #1a78e4; 
+  color: white;
+  border: none;
+  border-radius: 50%; 
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-eliminar:hover {
+  background-color: #1a78e4; 
+  transform: scale(1.1);
+}
+
+/* Separacion entre botones de accion */
+.botones-accion {
+  display: flex;
+  gap: 0.5rem; /* separa los botones */
+  margin-left: auto; /* mantiene alineaci0n a la derecha */
+}
+
 
 /* Responsive */
 @media (max-width: 768px) {

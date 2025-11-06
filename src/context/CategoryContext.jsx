@@ -8,7 +8,7 @@ export const CategoryProvider = ({ children }) => {
   const [categories, setCategories] = useState([])
   const { token } = useContext(AuthContext)
 
-  // === Obtener todas las categorías ===
+   /* Obtener todas las categorias */ 
   const fetchCategories = async () => {
     try {
       const response = await fetch("http://localhost:5000/categories")
@@ -22,7 +22,7 @@ export const CategoryProvider = ({ children }) => {
     }
   }
 
-  // === Crear nueva categoría ===
+ /*  Crear nueva categoria  */
   const createCategory = async (name, description) => {
     if (!token) {
       toast.error("Debes iniciar sesión para crear una categoría")
@@ -54,7 +54,7 @@ export const CategoryProvider = ({ children }) => {
     }
   }
 
-  // === Actualizar categoría ===
+ /* Actualizar categoria  */
   const updateCategory = async (id, updatedData) => {
     try {
       const response = await fetch(`http://localhost:5000/categories/${id}`, {
@@ -83,7 +83,7 @@ export const CategoryProvider = ({ children }) => {
     }
   }
 
-  // === Eliminar categoría (oculta, no borra físicamente) ===
+ /*  Eliminar categoria. oculta, no borra fisicamente */
   const deleteCategory = async (id) => {
     try {
       const response = await fetch(`http://localhost:5000/categories/${id}`, {

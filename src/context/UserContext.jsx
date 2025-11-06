@@ -8,7 +8,7 @@ export const UserProvider = ({ children }) => {
   const [users, setUsers] = useState([])
   const { token } = useContext(AuthContext)
 
-  // === Obtener todos los usuarios activos ===
+  // obtener todos los usuarios activos
   const fetchUsers = async () => {
     if (!token) return
     try {
@@ -27,7 +27,7 @@ export const UserProvider = ({ children }) => {
     }
   }
 
-  // === Registrar nuevo usuario ===
+  /* Registrar nuevo usuario */
   const registerUser = async (userData) => {
     try {
       const response = await fetch("http://localhost:5000/register", {
@@ -51,7 +51,7 @@ export const UserProvider = ({ children }) => {
     }
   }
 
-  // === Desactivar usuario (eliminar lógico) ===
+ /* Desactivar usuario (eliminar logico) */
   const deactivateUser = async (userId) => {
     try {
       const response = await fetch(`http://localhost:5000/users/${userId}`, {
@@ -74,7 +74,7 @@ export const UserProvider = ({ children }) => {
     }
   }
 
-  // === Reactivar usuario (solo admin) ===
+ /*  Reactivar usuario (solo admin)  */
   const reactivateUser = async (userId) => {
     try {
       const response = await fetch(`http://localhost:5000/users/${userId}`, {

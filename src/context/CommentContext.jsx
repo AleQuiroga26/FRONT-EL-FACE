@@ -8,7 +8,7 @@ export const CommentProvider = ({ children }) => {
   const [comments, setComments] = useState([])
   const { token } = useContext(AuthContext)
 
-  // === Obtener todos los comentarios visibles ===
+  /* Obtener todos los comentarios visibles  */
   const fetchComments = async () => {
     try {
       const response = await fetch("http://localhost:5000/comments", {
@@ -28,7 +28,7 @@ export const CommentProvider = ({ children }) => {
     }
   }
 
-  // === Crear comentario ===
+   /* Crear comentario  */
   const createComment = async (text, post_id) => {
     if (!token) {
       toast.error("Debes iniciar sesión para comentar")
@@ -60,7 +60,7 @@ export const CommentProvider = ({ children }) => {
     }
   }
 
-  // === Actualizar comentario ===
+  /*  Actualizar comentario */ 
   const updateComment = async (id, updatedData) => {
     try {
       const response = await fetch(`http://localhost:5000/comments/${id}`, {
@@ -89,7 +89,7 @@ export const CommentProvider = ({ children }) => {
     }
   }
 
-  // === Eliminar comentario (ocultar) ===
+  /* Eliminar comentario (ocultar)  */
   const deleteComment = async (id) => {
     try {
       const response = await fetch(`http://localhost:5000/comments/${id}`, {
