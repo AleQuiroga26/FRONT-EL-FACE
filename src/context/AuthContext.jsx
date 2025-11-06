@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
         const decoded = jwtDecode(storedToken);
         if (decoded.exp * 1000 > Date.now()) {
           setToken(storedToken);
-           /* El ID puede venir como sub o identity*/
+          /* El ID puede venir como sub o identity*/
           const userId = decoded.sub || decoded.identity || decoded.id;
           if (userId) fetchUserProfile(userId, storedToken);
         } else {
