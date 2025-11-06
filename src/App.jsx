@@ -33,7 +33,14 @@ export default function App() {
                   </PrivateRoute>
                 }
               />
-              <Route path="/perfil" element={<Profile />} />
+              <Route 
+                path="/perfil" 
+                element={
+                  <PrivateRoute>
+                    <Profile />
+                  </PrivateRoute>
+                } 
+              />
             </Routes>
           </CategoryProvider>
         </CommentProvider>
