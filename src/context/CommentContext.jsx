@@ -119,11 +119,6 @@ export const CommentProvider = ({ children }) => {
   }, [token])
 
 
-/*   useEffect(() => {
-    console.log("🗨️ Comentarios cargados:", comments)
-  }, [comments])
- */
-
   return (
     <CommentContext.Provider
       value={{

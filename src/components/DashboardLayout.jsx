@@ -188,24 +188,6 @@ export default function DashboardLayout() {
                             <div style={{ flex: 1 }}>
                               <strong>@{c.author?.username || "Anon"}</strong>: {c.text}
                             </div>
-                            {(c.author?.id === user?.id ||
-                              user?.role === "admin" ||
-                              user?.role === "moderator") && (
-                              <Button
-                                icon="pi pi-eye-slash"
-                                className="p-button-rounded p-button-text p-button-danger"
-                                tooltip="Ocultar comentario"
-                                onClick={async () => {
-                                  const confirmed = window.confirm(
-                                    "¿Seguro que deseas ocultar este comentario?"
-                                  );
-                                  if (!confirmed) return;
-
-                                  await deleteComment(c.id);
-                                  await fetchPosts();
-                                }}
-                              />
-                            )}
                           </div>
                         ))
                       ) : (

@@ -9,22 +9,42 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null)
 
   useEffect(() => {
-    const storedToken = localStorage.getItem('token')
+    const storedToken = localStorage.getItem("token");
     if (storedToken) {
       try {
-        const decoded = jwtDecode(storedToken)
+        const decoded = jwtDecode(storedToken);
         if (decoded.exp * 1000 > Date.now()) {
-          setUser(decoded)
-          setToken(storedToken)
+          setToken(storedToken);
+          // El ID puede venir como "sub" o "identity"
+          const userId = decoded.sub || decoded.identity || decoded.id;
+          if (userId) fetchUserProfile(userId, storedToken);
         } else {
-          localStorage.removeItem('token')
+          localStorage.removeItem("token");
         }
       } catch (error) {
-        console.error('Token inválido', error)
-        localStorage.removeItem('token')
+        console.error("Token inválido", error);
+        localStorage.removeItem("token");
       }
     }
-  }, [])
+  }, []);
+
+
+  const fetchUserProfile = async (userId, jwtToken) => {
+    try {
+      const response = await fetch(`http://localhost:5000/users/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${jwtToken}`,
+        },
+      });
+
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || "Error al cargar perfil");
+
+      setUser(data); // Guarda los datos completos (username, email, role...)
+    } catch (error) {
+      console.error("Error cargando perfil:", error);
+    }
+  };
 
   // LOGIN
   const login = async (username, password) => {
@@ -50,9 +70,11 @@ export const AuthProvider = ({ children }) => {
 
       localStorage.setItem('token', jwtToken)
       const decoded = jwtDecode(jwtToken)
-      setUser(decoded)
       setToken(jwtToken)
-
+      const userId = decoded.sub || decoded.identity || decoded.id;
+      if (userId) {
+        await fetchUserProfile(userId, jwtToken);
+      }
       toast.success('Inicio de sesión exitoso')
       return true
     } catch (error) {
